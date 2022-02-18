@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogPals</title>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    <!-- External CSS Styling -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!--AnimeJS CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Vue.js 3 CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!--Paw animation-->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!--Change Favicon-->
+    <link rel="icon" href="images/dog_icon.svg">
+</head>
+
+<body>
+<main id = 'app'>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-light" id="header">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <object id = 'logo' data="images/logo.svg" type="image/svg+xml" height="45px" width="180px" class = 'ps-3' alt = 'logo'></object></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-around ">
+                    <li class="nav-item">
+                    <a class="nav-link active me-5" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-5" href="find_a_playmate.html">Find a Playmate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-5" href="find_a_place.html">Find a Place</a>
+                    </li>
+                    <li class="nav-item" v-if = 'login'>
+                        <a class="nav-link me-5" href="chat.php">Chat
+                            <div id = "notification" v-show ="notification(username)">
+                                <i class='bell fa fa-bell faa-ring'></i>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+                
+                    
+                <span v-if = 'login'>
+                    <span class = 'px-2' id = 'profile_text' >Hi, {{username}}! </span>
+                    <div class="dropdown me-5 d-inline">
+                    <a href = '#' class = 'dropdown-toggle' id = 'defaultDropdown'
+                    data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                    <img :src =  'img_url' style = 'width: 50px; height : 50px; border-radius: 50%;'></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="defaultDropdown" >
+                        <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="logout.php" style="text-decoration: none;"><button type = 'button' class = 'btn btn-warning rounded-pill mx-auto d-flex px-4 py-2 text-uppercase'>Sign Out</button></a></li>
+                    </ul>
+                    </div>
+                </span>
+
+                <span v-else>
+                    <form action = 'sign_in.php' method="POST" style="display: inline-block;">
+                        <button class="btn btn-warning me-4 px-4 py-2 rounded-pill text-uppercase" type="submit" name = 'signup'>Sign Up</button>
+                    </form>
+                    
+                    <form action = 'sign_in.php' method="POST" style="display: inline-block;">
+                        <button class="btn btn-warning me-5 px-4 py-2 rounded-pill text-uppercase" type="submit" name = 'login'>Login</button>
+                    </form>
+                </span>
+
+                
+            </div>
+        </div>
+    </nav>
+
+    
+    <modal-component></modal-component>
+
+
+    <!-- Main Box-->
+    <div id = 'main_box'>
+        <div class = 'container'>
+            <div class="row">
+                <div id = 'paw_bg'>
+                    <lottie-player src="images/paw.json"  background="transparent"  speed="1"  loop  autoplay></lottie-player>
+                </div>
+                <div class = 'col-12 col-lg-6 text-center' id = 'main_left_box'>
+                    <h3 id = 'tagline'><strong>Find <span class = 'type' style="color: #f0ad4e;"></span></strong></h3>
+                    <form action = 'find_a_playmate.html'>
+                        <button class="btn btn-warning py-2 px-4 mt-3 me-5 rounded-pill shadow-none text-uppercase" id = 'playmate_btn' type="submit">Get Started</button>
+                    </form>
+                </div>
+
+                <div class="col-12 col-lg-6 order-first order-lg-last" id = 'main_right_box'>    
+                    <div id="carouselExampleControls" class="carousel slide mt-4" data-bs-ride="carousel" height="100%">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/main_carousel1.jpg" class="d-block w-100" alt="pups">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/main_carousel2.jpg" class="d-block w-100" alt="dogs hugging">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/main_carousel3.jpg" class="d-block w-100" alt="dogs sightseeing">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>      
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <!-- About us --> 
+    <div class = 'container mb-5'>
+        <div class = 'row text-center'>
+            <div class = 'col-md-6 mt-5 row justify-content-center' style="height: 320px;">
+                <div id = 'about_bg'>
+                    <img id = 'about_img2' src = 'images/about_us.jpg'>
+                </div>
+            </div>
+            <div class = 'col-md-6 mt-5' id = 'description'>
+                <h3 class = 'mt-5 headings'>About Us</h3>
+                <p id = 'about_desc'>Established in 2021, we are a group of dog lovers with a strong passion of improving dog lives and providing a safe space for dogs and their owners to find friends! DogPals is an all-in-one platform for finding playmates for your dog and pet-friendly places to visit, as well as meeting fellow pet owners!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- What we Offer -->
+    <div class = 'container my-5'>
+        <div class = 'row text-center'>
+            <h3 class = 'mt-5 headings'>What We Offer</h3>
+            <div class = 'col-md-12 mt-4 mb-4'>
+                <div class="row row-cols-1 row-cols-md-3 g-3 p-3">
+                    <!--Card #1-->
+                    <div class="col">
+                        <div class="card h-100 border-0 rounded-3">
+                            <img src="images/dog1.jpg" class="card-img-top" alt="dogs playing" >
+                            <div class="card-body">
+                            <h5 class="card-title">An Ideal Playmate</h5>
+                            <p class="card-text">Worried about your dog not having a playmate? With DogPals, we ensure that your dog will meet a friend that has a compatible play style, size, age and more.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Card #2-->
+                    <div class="col">
+                        <div class="card h-100 border-0 rounded-3">
+                            <img src="images/dog2.png" class="card-img-top" height = '250px 'alt="dogs eating" >
+                            <div class="card-body">
+                            <h5 class="card-title">Dog-friendly Places</h5>
+                            <p class="card-text">Having trouble finding where to go with your dog? Dogpals is here to help you find new cafes, parks and pet friendly places for you to explore with your pet!</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!--Card #3-->
+                    <div class = 'col'>
+                    <div class="card h-100 border-0 rounded-3">
+                        <img src="images/dog3.jpg" class="card-img-top" height = '250px' alt="dog owners">
+                        <div class="card-body">
+                        <h5 class="card-title">Meet Other Pet Owners</h5>
+                        <p class="card-text">Looking to meet new people or make new friends? DogPals connects all dog lovers - meet, chat and share interests with other dog owners. Why wait! Make new friends today!</p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class = 'container my-5'>
+        <div class="col-md-10 mx-auto box">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <testimonial-component text = "Thanks to DogPals, I now have more places to visit with my dog! Highly recommend DogPals!" person = 'Darien Tan' img_src = 'images/testimonial1.jpg'></testimonial-component>
+                </div>
+                <div class="carousel-item">
+                    <testimonial-component text = 'DogPals is such a wonderful platform for busy individuals like myself! My dog has so many more friends to play with now!' person = 'Benjamin Tan' img_src = 'images/testimonial2.jpg'></testimonial-component>
+                </div>
+                <div class="carousel-item">
+                    <testimonial-component text = "Can't wait to bring my dog to explore more places around Singapore and meet new furry friends!" person = 'Hazel Ma' img_src = 'images/testimonial3.jpg'></testimonial-component>
+                </div>
+                <div class="carousel-item">
+                    <testimonial-component text = 'Super easy to use platform to find playmates for my dog! My dog is already looking forward to his next playdate!' person = 'Joey Lau' img_src = 'images/testimonial4.jpg'></testimonial-component>
+                </div>
+                <div class="carousel-item">
+                    <testimonial-component text = 'What a great website! Strongly recommend to fellow dog owners out there!' person = 'Shambhavi' img_src = 'images/testimonial5.jpg'></testimonial-component>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span id= "carousel-control-prev-icon" class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button  class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span id= "carousel-control-next-icon" class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+
+    <!-- Footer -->
+    <footer>
+        <div class = 'container-fluid text-center' id = 'contact_us'>
+            <h3 class = 'headings pt-5'>Contact Us</h3>
+            <span class="fst-italic">We'll be glad to help!</span>
+            <div class = 'row justify-content-center'>
+                <div class="col-md-5 mt-4">
+                    <form id="form" class = 'p-3'>
+                        <div class="form-group my-3">
+                            <input type="text" class="form-control rounded-pill shadow-none" id="name" placeholder="Full Name" v-model = 'contact_name' @input = 'checkInput'>
+                        </div>
+        
+                        <div class="form-group my-3">
+                            <input type="email" class="form-control rounded-pill shadow-none" id="email" aria-describedby="emailHelp" placeholder="Email"  v-model = 'contact_email' @input = 'checkInput'>
+                        </div>
+        
+                        <div class="form-group my-3">
+                            <textarea class="form-control rounded shadow-none" id="textarea" rows="4" placeholder="Please enter your enquiry"  v-model = 'contact_text' @input = 'checkInput'></textarea>
+                        </div>
+                        <br>
+                        <button type = 'button' class="btn btn-secondary rounded-pill shadow-none px-4 py-2" id = 'contact_btn' :disabled = '!check' @click = 'submitQuery' data-bs-toggle="modal" data-bs-target="#contact_success">SUBMIT</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-9">
+            </div>
+            <div class="col-3">
+                <!--scroll to top button-->
+                <button id="scrollBtn"  class = 'btn btn-secondary shadow-none me-3'><i class="fas fa-arrow-up" id = 'up_icon'></i></button>
+            </div>
+        </div>
+
+        <div class="row">    
+            <p id = 'copyright' class="text-center">Copyright &copy; 2021 DogPals. All Rights Reserved.</p>
+        </div>
+
+    </footer>
+
+</main>
+
+<!-- firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+
+<!--Main External JS file-->
+<script src = 'js/main.js'></script>
+
+<!--type.js---------------->
+<script src="js/typed.js"></script>
+
+
+<script>
+    var typed = new Typed('.type', {
+
+    strings: ['Playmates', 'Pet-friendly places', 'a Lifelong Partner'],
+    typeSpeed:100,
+    backSpeed:70,
+    loop:true,
+    });
+</script>
+
+
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>
