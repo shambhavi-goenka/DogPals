@@ -1,0 +1,532 @@
+
+*,*::before,*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, input {
+    font-family: "Poppins", sans-serif !important;
+}
+
+/* Nav bar links */
+
+a.nav-link.active:hover, a.nav-link:hover {
+    color: #ffc107 !important;
+}
+
+
+a.nav-link {
+    font-weight: 500;
+    text-transform: uppercase;
+
+}
+
+a.nav-link.active::after, a.nav-link::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background:  #ffc107;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+a.nav-link.active:hover::after, a.nav-link:hover::after {
+    width: 100%;
+
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #FFF8EE;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 698px;
+    background-color: white;
+    border-radius: 33px;
+    box-shadow: 0px 60px 40px -30px rgba(0,0,0,0.27);
+
+}
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 65px);
+    height: calc(100% - 65px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.forms-wrap {
+    position: absolute;
+    height: 100%;
+    width: 45%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: 0.8s ease-in-out;
+    
+    
+}
+
+
+.form {
+    max-width: 350px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+form.sign-up-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.heading h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #151111;
+
+}
+
+.heading h6 {
+    color: #bababa;
+    font-weight: 400;
+    font-size: 12px;
+    display: inline;
+}
+
+.toggle {
+    color: #151111;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.toggle:hover {
+    color: #DDAA61;
+}
+
+.input-wrap {
+    max-width: 380px;
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 11px 0;
+    height: 50px;
+    border-radius: 55px;
+    border: 3px solid transparent;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+}
+
+
+
+.input-wrap i {
+    text-align: center;
+    line-height: 45px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+}
+
+.input-wrap input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 500;
+    font-size: 14px;
+    color: #333;
+    display: block;
+    padding: 10px;
+    width: 90%;
+    }
+
+.input-wrap input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+.input-wrap.success {
+    border-color: #4E8532;
+}
+
+.input-wrap.error {
+    border-color: #E00004;
+}
+
+
+/* increase margin space at the bottom to show error message */
+.input-wrap.error.requirement {
+    margin-bottom: 54px;
+}
+
+.input-wrap.error input {
+    border-color: #E00004;
+}
+
+.input-wrap i.fa-check-circle {
+    position: absolute;
+    left: 85%;
+    right: 0;
+    visibility: hidden;
+    top: 0px;
+    padding: 0px 0px;
+    transition: 0.01s;
+
+}
+
+.input-wrap i.fa-exclamation-circle {
+    position: absolute;
+    visibility: hidden;
+    left: 85%;
+    right: 0;
+    top: 0px;
+    padding: 0px 0px;
+    transition: 0.01s;
+
+}
+
+.input-wrap.success i.fa-check-circle {
+    visibility: visible;
+    color: #4E8532;
+
+}
+
+.input-wrap.error i.fa-exclamation-circle {
+    visibility: visible;
+    color: #E00004;
+
+}
+
+.input-wrap small {
+    visibility: hidden;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: 45px;
+    padding: 9px 8px;
+    display: inline-block;
+    font-size: 12px;
+
+}
+
+.input-wrap.error small {
+    visibility: visible;
+    color: #E00004;
+}
+
+
+.sign-btn {
+    display: inline-block;
+    height: 43px;
+    background-color: #DDAA61;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 49px;
+    font-size: 15px;
+    margin-bottom: 18px;
+    margin-top: 15px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 150px;
+    outline: none;
+}
+
+.sign-btn:hover {
+    background-color: #eccc9f;
+}
+
+.text {
+    color: #bbb;
+    font-size: 12px;
+}
+
+.text a {
+    color: #bbb;
+    transition: 0.3s;
+}
+
+.text a:hover {
+    color: #DDAA61;
+}
+
+main.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+main.sign-up-mode .forms-wrap {
+    left: 55%;
+}
+
+main.sign-up-mode .carousel {
+    left: 0%;
+}
+
+
+.image {
+    border-radius: 32px;
+    width: 100%;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    height: 633px;
+}
+
+
+.carousel {
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    left: 45%;
+    top: 0;
+    border-radius: 33px;
+    transition: 0.8s ease-in-out;
+    background: rgba(68, 68, 68, 0.85);
+
+
+}
+
+
+img {
+    opacity: 0.5;
+}
+
+#recaptcha {
+    transform:scale(0.8);
+    margin: 0;
+    margin-left: 20px;
+}
+
+#recaptcha_error {
+    color: #E00004;
+    font-size: 11px;
+}
+
+#check-username {
+    font-size: 12px;
+    left: 4px;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    top: 27px;
+}
+
+
+
+@media screen and (min-width: 0px) and (max-width: 500px) {
+
+    a.nav-link.active:hover::after, a.nav-link:hover::after {
+        width: 0% !important;
+    
+    }
+    
+    .box{
+        height: 100%;
+        max-width: 550px;
+        overflow: hidden;
+    }
+
+    .inner-box {
+        position: static;
+        transform: none;
+        width: revert;
+        height: revert;
+
+    }
+
+    .forms-wrap {
+        position: revert;
+        width: 120%;
+        height: auto;
+        padding: 10px;
+        
+    }
+
+    form#form1{
+        max-width: revert;
+        padding: 10px 50px 20px 0px;
+        transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+
+
+    }
+
+    form#form2{
+        padding: 10px 0px 20px 0px;
+        transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+
+    }
+
+    #form2 .actual-form {
+        padding-right: 54px;
+    }
+    
+
+    form.sign-up-form {
+        transform: translateX(100%);
+    }
+
+    main.sign-up-mode form.sign-in-form {
+        transform: translateX(-100%);
+    }
+
+    main.sign-up-mode form.sign-up-form {
+        transform: translateX(0%);
+    }
+
+    
+    .heading{
+        margin: 32px 0px;
+        text-align: center;
+    }
+
+    div#form2-heading {
+        padding-right: 39px;
+    }
+
+    
+    .heading h2{
+        margin: 5px 0px;
+        text-align: center;
+        font-size: 24px;
+    }
+
+
+    .heading h6 {
+        font-size: 10px;
+    }
+
+    .input-wrap {
+        max-width: 190px;
+        width: 100%;
+        background-color: #f0f0f0;
+        height: 50px;
+        border-radius: 55px;
+        border: 3px solid transparent;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        padding: 0 0.4rem;
+        position: relative;
+        padding-bottom: 20px;
+        margin-bottom: 40px;
+        margin: 30px auto;
+    }
+
+    .input-wrap input {
+        background: none;
+        outline: none;
+        border: none;
+        line-height: 1;
+        font-weight: 500;
+        font-size: 12px;
+        color: #333;
+        display: block;
+        padding: 10px;
+        width: 90%;
+        }
+    .input-wrap i {
+        text-align: center;
+        line-height: 45px;
+        color: #acacac;
+        transition: 0.5s;
+        font-size: 14px;
+        margin-left: 3px;
+    }
+    .actual-form p {
+        font-size: 10px;
+    }
+
+    .sign-btn {
+        display: inline-block;
+        height: 43px;
+        background-color: #DDAA61;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 49px;
+        font-size: 15px;
+        margin-bottom: 18px;
+        margin-top: 15px;
+        transition: 0.3s;
+        text-transform: uppercase;
+        font-weight: 600;
+        width: 190px;
+        outline: none;
+    }
+    
+    .input-wrap small {
+        visibility: hidden;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        top: 45px;
+        padding: 9px 8px;
+        display: inline-block;
+        font-size: 9px;
+    
+    }
+
+    .carousel {
+        position: revert !important;
+        height: auto !important;
+        width: 100% !important;
+        display: none !important;
+        
+    }
+
+    #recaptcha {
+        transform:scale(0.8);
+        margin: 0 30px;
+        margin-left: 3px;
+    }
+
+    #recaptcha_error {
+        color: #E00004;
+        font-size: 9px;
+    }
+    
+
+    div#error-alert {
+        margin-left: 30px;
+        width: 75%;
+    }
+
+}

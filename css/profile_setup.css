@@ -1,0 +1,537 @@
+
+*,*::before,*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+body, input {
+    font-family: "Poppins", sans-serif !important;
+}
+
+/* Nav bar links */
+
+a.nav-link.active:hover, a.nav-link:hover {
+  color: #ffc107 !important;
+}
+
+
+a.nav-link {
+  font-weight: 500;
+  text-transform: uppercase;
+
+}
+
+a.nav-link.active::after, a.nav-link::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background:  #ffc107;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+
+a.nav-link.active:hover::after, a.nav-link:hover::after {
+  width: 100%;
+
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #FFF8EE;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 698px;
+    background-color: white;
+    border-radius: 33px;
+    box-shadow: 0px 60px 40px -30px rgba(0,0,0,0.27);
+
+}
+
+.inner-box {
+    position: absolute;
+    width: calc(100% - 65px);
+    height: calc(100% - 65px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* progress bar */
+
+.container .progressbar{
+    display: flex;
+    margin: 20px 0 8px;
+    user-select: none;
+}
+.container .progressbar .step{
+    text-align: center;
+    width: 100%;
+    max-width: 85px;
+    position: relative;
+
+}
+.container .progressbar .step p{
+    font-weight: 500;
+    font-size: 12px;
+    color: #000;
+    margin-bottom: 8px;
+}
+.progressbar .step .bullet{
+    height: 22px;
+    width: 22px;
+    border: 2px solid #000;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+    transition: 0.2s;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 19px;
+}
+.progressbar .step .bullet.active{
+    border-color: #DDAA61;
+    background: #DDAA61;
+}
+.progressbar .step .bullet span{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.progressbar .step .bullet.active span{
+    display: none;
+}
+.progressbar .step .bullet:before,
+.progressbar .step .bullet:after{
+    position: absolute;
+    content: '';
+    bottom: 9px;
+    right: -60px;
+    height: 1.5px;
+    width: 54px;
+    background: #262626;
+}
+.progressbar .step .bullet.active:after{
+    background: #DDAA61;
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: animate 0.3s linear forwards;
+}
+
+@keyframes animate {
+    100%{
+        transform: scaleX(1);
+    }
+}
+.progressbar .step:last-child .bullet:before,
+.progressbar .step:last-child .bullet:after{
+    display: none;
+}
+.progressbar .step p.active{
+    color: #DDAA61;
+    transition: 0.2s linear;
+}
+.progressbar .step .check{
+    position: absolute;
+    left: 50%;
+    top: 23%;
+    font-size: 12px;
+    transform: translate(-50%, -50%);
+    display: none;
+
+}
+.progressbar .step .check.active{
+    display: block;
+    color: white;
+
+}
+
+h4 {
+    text-align: center;
+    
+}
+
+
+
+
+  .container .form-outer{
+    width: 100%;
+    overflow: hidden;
+  }
+  .container .form-outer form{
+    display: flex;
+    width: 400%;
+  }
+  .form-outer form .page{
+    width: 25%;
+    transition: margin-left 0.3s ease-in-out;
+  }
+  .form-outer form .page .title{
+    text-align: center;
+    font-size: 25px;
+    font-weight: 500;
+  }
+  .form-outer form .page .field{
+    width: 330px;
+    height: 45px;
+    margin: 45px auto;
+    display: flex;
+    position: relative;
+  }
+
+  .form-outer form .page .field.personality{
+    width: 500px;
+    height: 45px;
+    margin: 45px auto;
+    display: flex;
+    position: relative;
+  }
+    
+
+  form .page .field .label{
+    position: absolute;
+    top: -24px;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 65px;
+
+  }
+  form .page .field input{
+    height: 45px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 50px;
+    background-color: #f0f0f0;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 14px;
+  }
+  form .page .field.personality input {
+    border-radius: 3px;
+    background-color: #f0f0f0;;
+
+  }
+
+  label.label.personality.text-center {
+    margin-left: 35%;
+  }
+
+  input[type = 'checkbox']{
+    height: 45px;
+    width: 100%;
+    max-width: 200px;
+    background-color: #f0f0f0;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    font-size: 14px;
+  }
+  
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+  }
+  
+  
+  form .page .field select{
+    width: 100%;
+    max-width: 220px;
+    padding-left: 10px;
+    font-size: 14px;
+    border-radius: 55px;
+    border: none;
+    background-color: #f0f0f0;
+  }
+
+
+    
+    textarea#favplace {
+    width: 100%;
+    height: 100px;
+    max-width: 400px;
+    padding-left: 10px;
+    font-size: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f0f0f0;
+    resize: horizontal;
+    position: absolute;
+    padding-top: 5px;
+  }
+
+
+
+  
+
+  #place-label {
+    left: -62px;
+  }
+
+
+  
+  form .page .field button{
+    width: 50%;
+    height: calc(100% + 5px);
+    border: none;
+    background: #DDAA61;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: 0.5s ease;
+    margin: -20px auto 0;
+    font-weight: 600;
+  }
+  
+  form .page .field button:hover{
+    background: rgb(243, 202, 125);
+  }
+
+  form .page .btns button{
+    margin-top: -30px!important;
+
+  }
+  form .page .btns button.prev{
+    margin-right: 8px;
+    font-size: 17px;
+
+  }
+  form .page .btns button.next{
+    margin-left: 8px;
+    font-size: 17px;
+
+  }
+
+  input[type='checkbox']:checked {
+    background-color: #DDAA61 !important;
+  }
+
+  
+
+@media screen and (min-width: 0px) and (max-width: 767px) {
+
+  a.nav-link.active:hover::after, a.nav-link:hover::after {
+    width: 0% !important;
+
+}
+
+  .box{
+      height: 100%;
+      max-width: 550px;
+      overflow: hidden;
+  }
+
+  .inner-box {
+      position: static;
+      transform: none;
+      width: revert;
+      height: revert;
+
+  }
+
+  .forms-wrap {
+      position: revert;
+      width: 100%;
+      height: auto;
+      padding: 10px;
+      
+  }
+
+  form #form1{
+      max-width: revert;
+      padding: 24px 40px 32px;
+      transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+      grid-column: revert;
+      margin-left: 8px;
+      justify-content: revert;
+      margin-top: 40px;
+
+  }
+
+  form #form2{
+      max-width: revert;
+      padding: 24px 40px 32px;
+      transition: transform 0.8s ease-in-out, opacity 0.45s linear;
+
+  }
+  
+  #last_page {
+    margin-left: 8px;
+  }
+
+  #last_btns {
+    right: 10%;
+  }
+
+  form.sign-up-form {
+      transform: translateX(100%);
+  }
+
+  main.sign-up-mode form.sign-in-form {
+      transform: translateX(-100%);
+  }
+
+  main.sign-up-mode form.sign-up-form {
+      transform: translateX(0%);
+  }
+  
+  #my-header {
+    font-size: 16px;
+  }
+
+  .input-wrap {
+      max-width: 200px;
+      width: 100%;
+      background-color: #f0f0f0;
+      height: 46px;
+      border-radius: 55px;
+      border: 3px solid transparent;
+      display: grid;
+      grid-template-columns: 15% 85%;
+      padding: 0 0.4rem;
+      position: relative;
+      padding-bottom: 20px;
+      margin-bottom: 40px;
+      margin: 30px auto;
+  }
+
+  .input-wrap input {
+      background: none;
+      outline: none;
+      border: none;
+      line-height: 1;
+      font-weight: 500;
+      font-size: 10px;
+      color: #333;
+      display: block;
+      padding: 10px;
+      width: 90%;
+      }
+  .input-wrap i {
+      text-align: center;
+      line-height: 45px;
+      color: #acacac;
+      transition: 0.5s;
+      font-size: 14px;
+      margin-left: 3px;
+  }
+  .actual-form p {
+      font-size: 10px;
+  }
+
+  form .page .field .label {
+    font-size: 13px;
+  }
+
+.container .progressbar .step{
+  text-align: center;
+  width: 100%;
+  max-width: 97px;
+  position: relative;
+
+}
+.container .progressbar .step p{
+  font-weight: 500;
+  font-size: 9px;
+  color: #000;
+  margin-bottom: 8px;
+}
+.progressbar .step .bullet{
+  height: 19px;
+  width: 19px;
+  border: 2px solid #000;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  transition: 0.2s;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+}
+
+.progressbar .step .bullet:before,
+.progressbar .step .bullet:after{
+  position: absolute;
+  content: '';
+  bottom: 9px;
+  right: -50px;
+  height: 1.5px;
+  width: 40px;
+  background: #262626;
+}
+
+.progressbar .step .check{
+  position: absolute;
+  left: 50%;
+  top: 23%;
+  font-size: 9px;
+  transform: translate(-50%, -50%);
+  display: none;
+
+}
+
+.progressbar .step p.active{
+  color: #DDAA61;
+  transition: 0.2s linear;
+}
+
+.field.btns {
+  display: block !important;
+}
+form .page .btns button.prev{
+  margin-right: 0px;
+  font-size: 17px;
+  margin-bottom: 20px !important;
+  
+
+}
+form .page .btns button.next{
+  margin-left: 2px;
+  font-size: 17px;
+  
+
+}
+.row > * {
+  padding-left: 0 !important;
+}
+
+#place-label {
+  margin-left: 100px !important;
+}
+
+textarea#favplace {
+  width: 250px !important;
+  right: 50px !important;
+}
+
+.form-outer form .page .field.personality {
+  width: 310px;
+  display: block;
+  font-size: 12px;
+}
+label.label.personality.text-center {
+  margin-left: 25%;
+}
+
+input[type='checkbox'] {
+  width: 5px !important;
+  height: 12px !important;
+}
+
+}

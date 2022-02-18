@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DogPals</title>
+
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+    
+    <!-- External CSS Styling -->
+    <link rel="stylesheet" href="css/find_a_place_seemore.css">
+    
+    <!-- CSS Fonts  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Change Favicon-->
+    <link rel="icon" href="images/dog_icon.svg">
+
+    <!--AnimeJS CDN-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Vue.js 3 CDN -->
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!--Font Awesome -->
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<main>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-md navbar-light" id="header">
+        <div class="container-fluid" id='app'>
+            <a class="navbar-brand" href="main.html">
+                <object id = 'logo' data="images/logo.svg" type="image/svg+xml" height="45px" width="180px" class = 'ps-3'></object></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 d-flex justify-content-around">
+                    <li class="nav-item">
+                    <a class="nav-link me-5" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link me-5" aria-current="page" href="find_a_playmate.html">Find a Playmate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active me-5" href="find_a_place.html">Find a Place</a>
+                    </li>
+                    <li class="nav-item" v-if = 'login'>
+                        <a class="nav-link me-5" href="chat.php">Chat
+                            <div id = "notification" v-show ="notification(username)">
+                                <i class='bell fa fa-bell faa-ring'></i>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+
+                <span v-if = 'login'>
+                    <span class = 'px-2' id = 'profile_text' >Hi, {{username}}! </span>
+                    <div class="dropdown me-5 d-inline">
+                    <a href = '#' class = 'dropdown-toggle' id = 'defaultDropdown'
+                    data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                    <img :src =  'img_url' style = 'width: 50px; height : 50px; border-radius: 50%;'></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="defaultDropdown" >
+                        <li><a class="dropdown-item" href="profile.php">My Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a href="logout.php" style="text-decoration: none;"><button type = 'button' class = 'btn btn-warning rounded-pill mx-auto d-flex px-4 py-2 text-uppercase'>Sign Out</button></a></li>
+                    </ul>
+                    </div>
+                </span>
+
+                <span v-else>
+                    <form action = 'sign_in.php' method="POST" style="display: inline-block;">
+                        <button class="btn btn-warning me-4 px-4 py-2 rounded-pill text-uppercase" type="submit" name = 'signup'>Sign Up</button>
+                    </form>
+                    
+                    <form action = 'sign_in.php' method="POST" style="display: inline-block;">
+                        <button class="btn btn-warning me-5 px-4 py-2 rounded-pill text-uppercase" type="submit" name = 'login'>Login</button>
+                    </form>
+                </span>
+
+            </div>
+        </div>
+    </nav>
+</main>   
+<div id="place_see_more">
+    <div id="filter">
+        <!-- Introduction -->
+        <div class="container-fluid" style="background-color: #e6f1f8; height: 280px;" id="header_box">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-xs-10 col-md-7">
+                    <h3 class="headings" style="padding-top: 60px; text-align: center; color: #DDAA61">Find a Place</h3>       
+                    <p style="margin-top: 20px; text-align: center; line-height: 1.8;">At DogPals, we aim to create <b>bonding opportunities</b>
+                        for you and your dog through recommending pet-friendly places with high ratings and good reviews.</p>
+    
+                    <div class="box">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input type="text" placeholder="Search for Places" v-model="search_places">
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+
+
+        <!-- Filter Bar & places Profiles -->
+        <div class="container" id="outer-container">
+            
+            <div class="row" id="container_filter_places">
+                
+                <div class="col-lg-3 col-12 mb-4" id="inner-container-filter">                  
+                    <h4 style="color: #DDAA61">Filter</h4>
+                    <p style="color: grey"> {{ num_of_places }} Place(s) Found</p>
+                
+                    <div class="accordion shadow-sm" id="accordionExample">
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Types of Places
+                            </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <input type="checkbox" id="Park" v-model="park.checked" @click="processCheck"><label for="Park">&nbsp;<img src="images/places/icons/svg/tree.png" style="width:20px">&nbsp;Park </label> <br>
+                                    <input type="checkbox" id="Dining" v-model="dining.checked" @click="processCheck"><label for="Dining">&nbsp;<img src="images/places/icons/svg/dining.png" style="width:20px">&nbsp;Dining </label> <br>
+                                    <input type="checkbox" id="Pet-store" v-model="petstore.checked" @click="processCheck"><label for="Pet-store">&nbsp;<img src="images/places/icons/svg/petstore.png" style="width:20px">&nbsp;Pet-store </label> <br>
+                                    <input type="checkbox" id="Pet Grooming" v-model="grooming.checked" @click="processCheck"><label for="Pet Grooming">&nbsp;<img src="images/places/icons/svg/grooming.png" style="width:20px">&nbsp;Pet Grooming </label> <br>
+                                    <input type="checkbox" id="Vet Clinics" v-model="vet.checked" @click="processCheck"><label for="Vet Clinics">&nbsp;<img src="images/places/icons/svg/vet.png" style="width:20px">&nbsp;Vet Clinics </label> <br>
+                                    <input type="checkbox" id="Other" v-model="other.checked" @click="processCheck"><label for="Other">&nbsp;<img src="images/places/icons/svg/footprint.png" style="width:20px">&nbsp;Other </label><br>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSix">
+                                <div class="my-4 text-center">
+                                    <button class="btn btn-outline-primary px-4 py-2 rounded-pill" type="submit" @click="clearSelectedOptions()">CLEAR ALL</button>
+                                </div>
+                            </h2>
+                            
+                        </div>
+
+                    </div>
+
+
+                </div> 
+
+
+                <div class="col-lg-9 col-xs-10" id="places_all" v-html="displayText">
+
+                </div>
+
+            
+            </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-9">
+        </div>
+        <div class="col-3">
+            <!--scroll to top button-->
+            <button id="scrollBtn"  class = 'btn btn-secondary shadow-none me-3'><i class="fas fa-arrow-up" id = 'up_icon'></i></button>
+        </div>
+    </div>
+
+
+    <p id = 'copyright'>Copyright &copy; 2021 DogPals. All Rights Reserved.</p>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-database.js"></script>
+
+<!-- Places Data -->
+<script src="js/place_see_more.js"></script>
+
+<!-- External JS File -->
+<script src = 'js/main.js'></script>
+
+<!-- Bootstrap CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
