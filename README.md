@@ -29,6 +29,7 @@ We noticed that there is a rising trend of dog adoption and fostering in Singapo
 
 Dogpals is targeting dog owners of all ages and gender in Singapore who are looking to find playmates for their dogs or exploring pet-friendly places to bring their dogs to. These owners can either view our website on a Macbook Pro, 13.3 inch with screen dimensions (1440 x 900) or on iphone X, 5.85 inch with screen demensions (375 x 812) for optimal results. 💻 📱
 
+Hosted example - https://dog-pals.000webhostapp.com/  
 
 ## 🤓 How to Install and Run Our Web Application (for Developers) ##
 
