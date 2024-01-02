@@ -44,63 +44,78 @@ It requires the latest version of [WAMP](https://sourceforge.net/projects/wampse
 
 **Step 2.** Next right-click the application and run as administrator
 
-![Wamp 1](images/readme/wamp1.png)
+<!-- ![Wamp 1](images/readme/wamp1.png) -->
+<img src="images/readme/wamp1.png" alt="Wamp 1">
 
 **Step 3.** Click Yes
 
-![Wamp 2](images/readme/wamp2.png)
+<!-- ![Wamp 2](images/readme/wamp2.png) -->
+<img src="images/readme/wamp2.png" alt="Wamp 2">
 
 **Step 4.** Choose English
 
-![Wamp 3](images/readme/wamp3.png)
+<!-- ![Wamp 3](images/readme/wamp3.png) -->
+<img src="images/readme/wamp3.png" alt="Wamp 3">
 
 **Step 5.** Accept license agreement by clicking next
 
-![Wamp 4](images/readme/wamp4.png)
+<!-- ![Wamp 4](images/readme/wamp4.png) -->
+<img src="images/readme/wamp4.png" alt="Wamp 4">
 
 **Step 6.** Ensure all steps of the installation are done prior to installation of WampServer
 
-![Wamp 5](images/readme/wamp5.png)
+<!-- ![Wamp 5](images/readme/wamp5.png) -->
+<img src="images/readme/wamp5.png" alt="Wamp 5">
 
 **Step 7.** Install it on C:\ or D:\ drive
 
-![Wamp 6](images/readme/wamp6.png)
+<!-- ![Wamp 6](images/readme/wamp6.png) -->
+<img src="images/readme/wamp6.png" alt="Wamp 6">
 
 **Step 8.** Choose the latest version of MYSQL which is MYSQL8.0.21
 
-![Wamp 7](images/readme/wamp7.png)
+<!-- ![Wamp 7](images/readme/wamp7.png) -->
+<img src="images/readme/wamp7.png" alt="Wamp 7">
 
 **Step 9.** Accept the default by clicking next
 
-![Wamp 8](images/readme/wamp8.png)
+<!-- ![Wamp 8](images/readme/wamp8.png) -->
+<img src="images/readme/wamp8.png" alt="Wamp 8">
 
 **Step 10.** Click install if the information shown on the confirmation screen is correct
 
-![Wamp 9](images/readme/wamp9.png)
+<!-- ![Wamp 9](images/readme/wamp9.png) -->
+<img src="images/readme/wamp9.png" alt="Wamp 9">
 
 **Step 11.** For this Web Application we are using Chrome. Click yes to select another Browser.
 
-![Wamp 10](images/readme/wamp10.png)
+<!-- ![Wamp 10](images/readme/wamp10.png) -->
+<img src="images/readme/wamp10.png" alt="Wamp 10">
 
 **Step 12.** Go to this directory C:\Program Files (x86)\Google\Chrome\Application and select Chrome.exe and click open
 
-![Wamp 11](images/readme/wamp11.png)
+<!-- ![Wamp 11](images/readme/wamp11.png) -->
+<img src="images/readme/wamp11.png" alt="Wamp 11">
 
 **Step 13.** Select no when prompted for your default text editor
 
-![Wamp 12](images/readme/wamp12.png)
+<!-- ![Wamp 12](images/readme/wamp12.png) -->
+<img src="images/readme/wamp12.png" alt="Wamp 12">
 
 **Step 14.** Select next when you see this screen
 
-![Wamp 13](images/readme/wamp13.png)
+<!-- ![Wamp 13](images/readme/wamp13.png) -->
+<img src="images/readme/wamp13.png" alt="Wamp 13">
 
 **Step 15.** Click finish as set up has been completed
 
-![Wamp 14](images/readme/wamp14.png)
+<!-- ![Wamp 14](images/readme/wamp14.png) -->
+<img src="images/readme/wamp14.png" alt="Wamp 14">
 
 **Step 16.** Select [Allow access] if you see a Security alert
 
-![Wamp 15](images/readme/wamp15.png)
+<!-- ![Wamp 15](images/readme/wamp15.png) -->
+<img src="images/readme/wamp15.png" alt="Wamp 15">
 
 
 
@@ -222,6 +237,7 @@ Our group deployed our web application to 000webhost. Click [here]( https://dog-
 ![Calculate Distance](images/readme/calculate_distance.png) 
 
 ![Map](images/readme/map.png) 
+
 
 
 **If the user scrolls down, she will be able to view the different categories. Upon clicking on 'SEE MORE', she will be directed to another page that displays all the recommended places by DogPals.**
